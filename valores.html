@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Valores Iniciais</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%); /* fundo cinza claro */
+        color: #1e293b;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Container geral da seção */
+      #valores {
+        margin-top: 4rem;
+        padding: 2rem 1rem 4rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Título principal */
+      #valores h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #1e293b;
+      }
+
+      /* Parágrafo introdutório */
+      #valores p.intro {
+        color: #475569;
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 1rem;
+      }
+
+      /* Grid responsiva */
+      #valores .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        #valores .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        #valores .grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      /* Cartões */
+      .service-card {
+        background: #ffffff;
+        padding: 1.8rem;
+        border-radius: 1rem;
+        border-top: 4px solid #6366f1;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.35s ease;
+        text-align: left;
+      }
+
+      .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(99,102,241,0.15);
+      }
+
+      .service-card h3 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: #1e293b;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+        color: #475569;
+        margin-top: 0.6rem;
+        line-height: 1.4;
+      }
+
+      .service-card .price {
+        margin-top: 1.2rem;
+        color: #4f46e5;
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      /* Botão WhatsApp */
+      #valores a.whatsapp-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #4f46e5, #6366f1);
+        color: #fff;
+        padding: 0.9rem 1.8rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+      }
+
+      #valores a.whatsapp-btn:hover {
+        background: linear-gradient(90deg, #4338ca, #4f46e5);
+        transform: scale(1.05);
+        box-shadow: 0 6px 18px rgba(79,70,229,0.4);
+      }
+
+      /* Animação sutil */
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241, 0.4); }
+        50% { box-shadow: 0 0 0 8px rgba(99,102,241, 0); }
+      }
+
+      .whatsapp-btn {
+        animation: pulse 3s infinite;
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        background: transparent;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .breadcrumb a {
+        text-decoration: none;
+        color: #6366f1;
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+    </style>
+  </head>
+  <body>
+    <section id="valores">
+      <h2>Valores Iniciais</h2>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+        </ol>
+      </nav>  
+
+      <div class="grid">
+        <div class="service-card">
+          <h3>Limpeza preventiva</h3>
+          <p>Limpeza interna completa e troca de pasta térmica.</p>
+          <p class="price">R$ 70–90</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Manutenção completa</h3>
+          <p>Formatação, drivers, programas e otimização.</p>
+          <p class="price">R$ 90–130</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Montagem de PC</h3>
+          <p>Montagem completa com organização de cabos e teste de estabilidade.</p>
+          <p class="price">R$ 120–180</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Serviços avançados</h3>
+          <p>Upgrades, BIOS, substituição de componentes e otimização.</p>
+          <p class="price">R$ 140–220</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a
+          href="https://wa.me/5549847713"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-btn"
+        >
+          💬 Solicitar Orçamento no WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
