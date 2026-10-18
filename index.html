@@ -3,201 +3,729 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5/1 - Montagem e Manutenção de PCs</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <meta name="theme-color" content="#16a34a" />
+  <meta name="description" content="Montagem e manutenção de PCs, limpeza, upgrades, formatação e diagnóstico. Solicite seu orçamento!" />
+
+  <title>5/1 Tec - Montagem e Manutenção de PCs</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  />
+
   <style>
+    :root {
+      --verde-principal: #16a34a;
+      --verde-escuro: #15803d;
+      --verde-hover: #166534;
+      --verde-claro: #f0fdf4;
+      --verde-borda: #bbf7d0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-      background: #f9fafb;
+      background: var(--verde-claro);
+      color: #14532d;
     }
+
+    /* Cabeçalho */
     header.sticky {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(240, 253, 244, 0.95);
+      border-bottom: 1px solid var(--verde-borda);
     }
-    /* Hover animado nos cards */
+
+    /* Cards */
     .hover-card {
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #dcfce7;
     }
+
     .hover-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(99,102,241,0.2);
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.18);
     }
-    /* Botão com animação */
+
+    /* Botões */
     .btn-animate {
       transition: all 0.3s ease;
     }
+
     .btn-animate:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(99,102,241,0.4);
+      transform: scale(1.04);
+      box-shadow: 0 6px 15px rgba(22, 163, 74, 0.3);
+    }
+
+    .btn-verde {
+      background: var(--verde-principal);
+      color: #ffffff;
+    }
+
+    .btn-verde:hover {
+      background: var(--verde-escuro);
+      color: #ffffff;
+    }
+
+    .texto-verde {
+      color: var(--verde-principal);
+    }
+
+    .borda-verde {
+      border-color: var(--verde-principal);
+    }
+
+    /* Fundo dos cards */
+    .card-branco {
+      background: #ffffff;
+    }
+
+    /* Links */
+    a {
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--verde-hover);
+    }
+
+    /* Menu mobile */
+    #mobileMenu {
+      display: none;
+    }
+
+    #mobileMenu.aberto {
+      display: block;
+    }
+
+    /* Foco acessível */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #4ade80;
+      outline-offset: 3px;
+    }
+
+    /* Seleção de texto */
+    ::selection {
+      background: #86efac;
+      color: #14532d;
+    }
+
+    /* Respeita usuários que preferem menos animações */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
 <body class="text-gray-900">
-  <!-- HEADER -->
-  <header class="shadow-sm sticky">
+
+  <!-- CABEÇALHO -->
+  <header class="sticky shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="bg-indigo-600 text-white rounded-md px-3 py-2 font-bold text-lg">5/1</div>
-        <span class="text-sm text-gray-600">Montagem & Manutenção</span>
-      </div>
-      <a
-        href="https://wa.me/5549847713"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden sm:flex bg-indigo-600 text-white px-5 py-2 rounded-md font-medium btn-animate items-center gap-2"
-      >
-        Contato
+
+      <a href="#" class="flex items-center gap-3" aria-label="Página inicial 5/1">
+        <div class="btn-verde rounded-md px-3 py-2 font-bold text-lg">
+          5/1
+        </div>
+
+        <span class="text-sm text-green-800 font-medium">
+          Montagem &amp; Manutenção
+        </span>
       </a>
-      <button id="menuBtn" class="sm:hidden text-gray-700 text-2xl">☰</button>
+
+      <nav class="hidden sm:flex items-center gap-6">
+        <a href="#servicos" class="text-green-800 hover:text-green-600 font-medium">
+          Serviços
+        </a>
+
+        <a href="#valores" class="text-green-800 hover:text-green-600 font-medium">
+          Valores
+        </a>
+
+        <a
+          href="https://wa.me/5549847713"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-verde px-5 py-2 rounded-md font-medium btn-animate"
+        >
+          Contato
+        </a>
+      </nav>
+
+      <button
+        id="menuBtn"
+        type="button"
+        class="sm:hidden text-green-700 text-2xl"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        ☰
+      </button>
     </div>
+
+    <!-- MENU PARA CELULAR -->
+    <nav id="mobileMenu" class="sm:hidden px-6 pb-4">
+      <div class="flex flex-col gap-3 border-t border-green-200 pt-4">
+        <a href="#servicos" class="text-green-800 font-medium">
+          Serviços
+        </a>
+
+        <a href="#valores" class="text-green-800 font-medium">
+          Valores
+        </a>
+
+        <a
+          href="https://wa.me/5549847713"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-verde px-4 py-2 rounded-md text-center font-medium"
+        >
+          Contato
+        </a>
+      </div>
+    </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- APRESENTAÇÃO -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
       <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-          Montagem e manutenção de <span class="text-indigo-600">PCs</span>
+        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+          Tecnologia e confiança
+        </span>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-green-950">
+          Montagem e manutenção de
+          <span class="texto-verde">PCs</span>
         </h1>
-        <p class="mt-4 text-gray-600 text-lg">
-          Montagens rápidas, upgrades confiáveis e manutenção com garantia. 
+
+        <p class="mt-4 text-green-800 text-lg">
+          Montagens rápidas, upgrades confiáveis e manutenção com garantia.
           Seu PC no máximo desempenho com atendimento profissional.
         </p>
+
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
+
           <a
             href="https://wa.me/5549847713"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-indigo-600 text-white px-6 py-3 rounded-md font-medium btn-animate flex items-center justify-center gap-2"
+            class="btn-verde px-6 py-3 rounded-md font-medium btn-animate flex items-center justify-center gap-2"
           >
-            Solicitar orçamento ➜
+            Solicitar orçamento
+            <span aria-hidden="true">➜</span>
           </a>
+
           <a
             href="/valores.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md font-medium flex items-center justify-center gap-2 hover:bg-indigo-50 btn-animate"
+            class="border border-green-600 text-green-700 px-6 py-3 rounded-md font-medium flex items-center justify-center gap-2 hover:bg-green-100 btn-animate"
           >
-            Valores Iniciais
+            Valores iniciais
           </a>
+
         </div>
       </div>
 
-      <div class="bg-white p-6 rounded-2xl shadow hover-card">
-        <h3 class="font-semibold text-xl mb-2 text-gray-800">Teste de bancada</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Diagnóstico completo, troca de peças e testes de estabilidade.
+      <!-- CARD DE DESTAQUE -->
+      <div class="card-branco p-6 rounded-2xl shadow hover-card">
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-green-100 text-green-700 rounded-xl p-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="3" width="18" height="14" rx="2"></rect>
+              <path d="M8 21h8"></path>
+              <path d="M12 17v4"></path>
+              <path d="m10 8-2 2 2 2"></path>
+              <path d="m14 8 2 2-2 2"></path>
+            </svg>
+          </div>
+
+          <div>
+            <h2 class="font-semibold text-xl text-green-900">
+              Teste de bancada
+            </h2>
+
+            <p class="text-sm text-green-700">
+              Diagnóstico e desempenho
+            </p>
+          </div>
+        </div>
+
+        <p class="text-sm text-green-800 mb-4">
+          Diagnóstico completo, troca de peças e testes de estabilidade
+          para garantir o funcionamento do seu computador.
         </p>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="border rounded-lg p-3 hover:bg-gray-50 transition">
-            <strong>Montagem</strong>
-            <p class="text-sm text-gray-600">Organização e desempenho.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+          <div class="border border-green-200 rounded-lg p-4 hover:bg-green-50 transition">
+            <div class="text-green-600 font-bold text-lg mb-1">
+              ⚙️ Montagem
+            </div>
+
+            <p class="text-sm text-green-800">
+              Organização dos componentes, montagem e testes de desempenho.
+            </p>
           </div>
-          <div class="border rounded-lg p-3 hover:bg-gray-50 transition">
-            <strong>Manutenção</strong>
-            <p class="text-sm text-gray-600">Limpeza e troca de pasta térmica.</p>
+
+          <div class="border border-green-200 rounded-lg p-4 hover:bg-green-50 transition">
+            <div class="text-green-600 font-bold text-lg mb-1">
+              🛠️ Manutenção
+            </div>
+
+            <p class="text-sm text-green-800">
+              Limpeza interna, troca de pasta térmica e manutenção preventiva.
+            </p>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- SERVIÇOS -->
-    <section id="servicos" class="mt-20">
-      <h2 class="text-3xl font-bold text-center mb-10">Serviços</h2>
+    <section id="servicos" class="mt-20 scroll-mt-24">
+
+      <div class="text-center mb-10">
+        <span class="text-green-600 font-semibold uppercase tracking-wider text-sm">
+          O que fazemos
+        </span>
+
+        <h2 class="text-3xl font-bold text-green-950 mt-2">
+          Nossos serviços
+        </h2>
+
+        <p class="text-green-800 mt-3">
+          Soluções para manter seu computador rápido, estável e confiável.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-xl hover-card">
-          <h3 class="font-semibold text-lg mb-1">Instalação de Monitores</h3>
-          <p class="text-sm text-gray-600">Configuração de múltiplos monitores e cabos.</p>
+
+        <div class="card-branco p-6 rounded-xl hover-card">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            🖥️
+          </div>
+
+          <h3 class="font-semibold text-lg mb-2 text-green-900">
+            Instalação de monitores
+          </h3>
+
+          <p class="text-sm text-green-800">
+            Configuração de múltiplos monitores, conexões e organização de cabos.
+          </p>
         </div>
-        <div class="bg-white p-6 rounded-xl hover-card">
-          <h3 class="font-semibold text-lg mb-1">Limpeza e Manutenção</h3>
-          <p class="text-sm text-gray-600">Limpeza interna, troca de pasta térmica e teste térmico.</p>
+
+        <div class="card-branco p-6 rounded-xl hover-card">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            🧹
+          </div>
+
+          <h3 class="font-semibold text-lg mb-2 text-green-900">
+            Limpeza e manutenção
+          </h3>
+
+          <p class="text-sm text-green-800">
+            Limpeza interna, troca de pasta térmica e testes de temperatura.
+          </p>
         </div>
-        <div class="bg-white p-6 rounded-xl hover-card">
-          <h3 class="font-semibold text-lg mb-1">Montagem & Upgrades</h3>
-          <p class="text-sm text-gray-600">BIOS, otimização e teste de estabilidade.</p>
+
+        <div class="card-branco p-6 rounded-xl hover-card">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            ⚙️
+          </div>
+
+          <h3 class="font-semibold text-lg mb-2 text-green-900">
+            Montagem e upgrades
+          </h3>
+
+          <p class="text-sm text-green-800">
+            Montagem de computadores, atualização de BIOS e testes de estabilidade.
+          </p>
         </div>
-        <div class="bg-white p-6 rounded-xl hover-card">
-          <h3 class="font-semibold text-lg mb-1">Formatação</h3>
-          <p class="text-sm text-gray-600">Windows, drivers e otimização de inicialização.</p>
+
+        <div class="card-branco p-6 rounded-xl hover-card">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            💿
+          </div>
+
+          <h3 class="font-semibold text-lg mb-2 text-green-900">
+            Formatação
+          </h3>
+
+          <p class="text-sm text-green-800">
+            Instalação do sistema operacional, drivers e otimização de inicialização.
+          </p>
         </div>
+
       </div>
     </section>
 
-    <section id="valores" class="mt-20">
-      <h2 class="text-3xl font-bold text-center mb-10">Valores Iniciais</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-xl hover-card border-t-4 border-indigo-600">
-          <h3 class="font-semibold text-lg">Limpeza preventiva</h3>
-          <p class="text-sm text-gray-600 mt-2">Limpeza interna completa e troca de pasta térmica.</p>
-          <p class="text-indigo-600 font-bold text-xl mt-4">R$ 70–90</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl hover-card border-t-4 border-indigo-600">
-          <h3 class="font-semibold text-lg">Manutenção completa</h3>
-          <p class="text-sm text-gray-600 mt-2">Formatação, drivers, programas e otimização.</p>
-          <p class="text-indigo-600 font-bold text-xl mt-4">R$ 90–130</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl hover-card border-t-4 border-indigo-600">
-          <h3 class="font-semibold text-lg">Montagem de PC</h3>
-          <p class="text-sm text-gray-600 mt-2">Montagem completa com organização e teste de estabilidade.</p>
-          <p class="text-indigo-600 font-bold text-xl mt-4">R$ 120–180</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl hover-card border-t-4 border-indigo-600">
-          <h3 class="font-semibold text-lg">Serviços avançados</h3>
-          <p class="text-sm text-gray-600 mt-2">Upgrades, BIOS, substituição de peças e otimização.</p>
-          <p class="text-indigo-600 font-bold text-xl mt-4">R$ 140–220</p>
-        </div>
+    <!-- VALORES -->
+    <section id="valores" class="mt-20 scroll-mt-24">
+
+      <div class="text-center mb-10">
+        <span class="text-green-600 font-semibold uppercase tracking-wider text-sm">
+          Preços acessíveis
+        </span>
+
+        <h2 class="text-3xl font-bold text-green-950 mt-2">
+          Valores iniciais
+        </h2>
+
+        <p class="text-green-800 mt-3">
+          Confira os preços iniciais dos nossos serviços.
+        </p>
       </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- PREÇO 1 -->
+        <div class="card-branco p-6 rounded-xl hover-card border-t-4 border-green-600">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            🧹
+          </div>
+
+          <h3 class="font-semibold text-lg text-green-900">
+            Limpeza preventiva
+          </h3>
+
+          <p class="text-sm text-green-800 mt-2">
+            Limpeza interna completa e troca de pasta térmica.
+          </p>
+
+          <p class="text-green-600 font-bold text-2xl mt-5">
+            R$ 70–90
+          </p>
+
+          <p class="text-xs text-green-700 mt-1">
+            Valor inicial do serviço
+          </p>
+        </div>
+
+        <!-- PREÇO 2 -->
+        <div class="card-branco p-6 rounded-xl hover-card border-t-4 border-green-600">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            💻
+          </div>
+
+          <h3 class="font-semibold text-lg text-green-900">
+            Manutenção completa
+          </h3>
+
+          <p class="text-sm text-green-800 mt-2">
+            Formatação, drivers, programas e otimização do sistema.
+          </p>
+
+          <p class="text-green-600 font-bold text-2xl mt-5">
+            R$ 90–130
+          </p>
+
+          <p class="text-xs text-green-700 mt-1">
+            Valor inicial do serviço
+          </p>
+        </div>
+
+        <!-- PREÇO 3 -->
+        <div class="card-branco p-6 rounded-xl hover-card border-t-4 border-green-600">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            🖥️
+          </div>
+
+          <h3 class="font-semibold text-lg text-green-900">
+            Montagem de PC
+          </h3>
+
+          <p class="text-sm text-green-800 mt-2">
+            Montagem completa, organização dos cabos e testes de estabilidade.
+          </p>
+
+          <p class="text-green-600 font-bold text-2xl mt-5">
+            R$ 120–180
+          </p>
+
+          <p class="text-xs text-green-700 mt-1">
+            Valor inicial do serviço
+          </p>
+        </div>
+
+        <!-- PREÇO 4 -->
+        <div class="card-branco p-6 rounded-xl hover-card border-t-4 border-green-600">
+          <div class="bg-green-100 text-green-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4">
+            🔧
+          </div>
+
+          <h3 class="font-semibold text-lg text-green-900">
+            Serviços avançados
+          </h3>
+
+          <p class="text-sm text-green-800 mt-2">
+            Upgrades, BIOS, substituição de peças e otimização.
+          </p>
+
+          <p class="text-green-600 font-bold text-2xl mt-5">
+            R$ 140–220
+          </p>
+
+          <p class="text-xs text-green-700 mt-1">
+            Valor inicial do serviço
+          </p>
+        </div>
+
+      </div>
+
+      <!-- BOTÃO DE ORÇAMENTO -->
       <div class="text-center mt-10">
+
+        <p class="text-green-800 mb-4">
+          Precisa de um serviço diferente? Entre em contato para consultar o valor.
+        </p>
+
         <a
           href="https://wa.me/5549847713"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-md font-semibold btn-animate"
+          class="inline-flex items-center justify-center gap-2 btn-verde px-8 py-3 rounded-md font-semibold btn-animate"
         >
-          Solicitar Orçamento no WhatsApp
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"></path>
+          </svg>
+
+          Solicitar orçamento no WhatsApp
         </a>
       </div>
+
     </section>
+
+    <!-- CHAMADA FINAL -->
+    <section class="mt-20 bg-green-700 rounded-2xl p-8 md:p-12 text-center shadow-lg">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">
+        Seu computador merece o melhor cuidado!
+      </h2>
+
+      <p class="text-green-50 mt-4 max-w-2xl mx-auto">
+        Conte com a 5/1 para montagem, manutenção e melhorias no seu PC.
+        Entre em contato e solicite seu orçamento.
+      </p>
+
+      <a
+        href="https://wa.me/5549847713"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block mt-6 bg-white text-green-700 px-8 py-3 rounded-md font-bold hover:bg-green-50 btn-animate"
+      >
+        Falar pelo WhatsApp
+      </a>
+    </section>
+
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-white border-t mt-20">
+  <!-- RODAPÉ -->
+  <footer class="bg-green-950 text-white mt-20">
+
     <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- SOBRE -->
       <div>
-        <h3 class="font-bold text-lg mb-2 text-gray-800">5/1</h3>
-        <p class="text-sm text-gray-600">
-          Montagem e manutenção profissional de computadores. Desempenho máximo e garantia de qualidade.
+        <h3 class="font-bold text-xl mb-3">
+          5/1
+        </h3>
+
+        <p class="text-sm text-green-100 leading-relaxed">
+          Montagem e manutenção profissional de computadores.
+          Desempenho, confiança e cuidado com o seu equipamento.
         </p>
       </div>
+
+      <!-- CONTATO -->
       <div>
-        <h3 class="font-bold text-lg mb-3 text-gray-800">Contato</h3>
-        <ul class="space-y-3 text-sm">
+        <h3 class="font-bold text-lg mb-3">
+          Contato
+        </h3>
+
+        <ul class="space-y-4 text-sm">
+
           <li>
-            <a href="https://wa.me/5549847713" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-indigo-600">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" class="w-5 h-5" alt="WhatsApp">
+            <a
+              href="https://wa.me/5549847713"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-green-100 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"></path>
+              </svg>
+
               WhatsApp
             </a>
           </li>
+
           <li>
-            <a href="https://www.instagram.com/brunofigueirabf/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-indigo-600">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-5 h-5" alt="Instagram">
+            <a
+              href="https://www.instagram.com/brunofigueirabf/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-green-100 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M17.5 6.5h.01"></path>
+              </svg>
+
               Instagram
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- NAVEGAÇÃO -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">
+          Navegação
+        </h3>
+
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="#servicos" class="text-green-100 hover:text-white">
+              Nossos serviços
+            </a>
+          </li>
+
+          <li>
+            <a href="#valores" class="text-green-100 hover:text-white">
+              Tabela de valores
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://wa.me/5549847713"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-green-100 hover:text-white"
+            >
+              Solicitar orçamento
             </a>
           </li>
         </ul>
       </div>
+
     </div>
-    <div class="border-t">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
-        <span>© 2025 Bruno Figueira | 5/1 - Montagem & Manutenção</span>
+
+    <!-- DIREITOS AUTORAIS -->
+    <div class="border-t border-green-800">
+      <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-green-200">
+
+        <span>
+          © <span id="currentYear">2026</span> Bruno Figueira | 5/1 Tec
+        </span>
+
+        <span>
+          Montagem &amp; Manutenção de PCs
+        </span>
+
       </div>
     </div>
+
   </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Menu responsivo para celulares
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', function () {
+      const aberto = mobileMenu.classList.toggle('aberto');
+
+      menuBtn.setAttribute('aria-expanded', String(aberto));
+      menuBtn.setAttribute(
+        'aria-label',
+        aberto ? 'Fechar menu' : 'Abrir menu'
+      );
+
+      menuBtn.textContent = aberto ? '✕' : '☰';
+    });
+
+    // Fecha o menu após clicar em um link
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('aberto');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Abrir menu');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    // Atualiza automaticamente o ano do rodapé
+    document.getElementById('currentYear').textContent =
+      new Date().getFullYear();
+  </script>
+
 </body>
 </html>
